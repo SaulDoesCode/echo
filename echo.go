@@ -164,6 +164,7 @@ const (
 	MIMEOctetStream                      = "application/octet-stream"
 )
 
+// charset and propfind shorthand
 const (
 	charsetUTF8 = "charset=UTF-8"
 	PROPFIND    = "PROPFIND"
@@ -219,7 +220,8 @@ const (
 )
 
 const (
-	Version = "3.3.dev"
+	// Version represents the project's current release number
+	Version = "3.4.dev"
 	website = "https://echo.labstack.com"
 	// http://patorjk.com/software/taag/#p=display&f=Small%20Slant&t=Echo
 	banner = `
@@ -691,6 +693,19 @@ func (e *Echo) Shutdown(ctx stdContext.Context) error {
 	return e.Server.Shutdown(ctx)
 }
 
+// ShutdownAfter stops server the gracefully after a timeout.
+// It internally calls `http.Server#Shutdown()`.
+func (e *Echo) ShutdownAfter(ctx stdContext.Context, duration time.Duration, postfunc func()) {
+	go func() {
+		time.Sleep(duration)
+		e.TLSServer.Shutdown(ctx)
+		e.Server.Shutdown(ctx)
+		if postfunc != nil {
+			postfunc()
+		}
+	}()
+}
+
 // NewHTTPError creates a new HTTPError instance.
 func NewHTTPError(code int, message ...interface{}) *HTTPError {
 	he := &HTTPError{Code: code, Message: http.StatusText(code)}
@@ -705,6 +720,7 @@ func (he *HTTPError) Error() string {
 	return fmt.Sprintf("code=%d, message=%v", he.Code, he.Message)
 }
 
+// SetInternal sets HTTPError's 'Internal' value to err & returns *HTTPError
 func (he *HTTPError) SetInternal(err error) *HTTPError {
 	he.Internal = err
 	return he
