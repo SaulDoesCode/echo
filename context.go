@@ -2,7 +2,6 @@ package echo
 
 import (
 	"bytes"
-	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io"
@@ -13,6 +12,9 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	json "github.com/json-iterator/go"
+	"github.com/vmihailenco/msgpack"
 )
 
 type (
@@ -136,6 +138,8 @@ type (
 		// to construct the JSONP payload.
 		JSONPBlob(code int, callback string, b []byte) error
 
+		// Msgpack sends a msgpack encoded response with a status code
+		Msgpack(code int, i interface{}) error
 		// XML sends an XML response with status code.
 		XML(code int, i interface{}) error
 
@@ -413,6 +417,14 @@ func (c *context) JSON(code int, i interface{}) (err error) {
 		return
 	}
 	return c.JSONBlob(code, b)
+}
+
+func (c *context) Msgpack(code int, i interface{}) (err error) {
+	b, err := msgpack.Marshal(i)
+	if err != nil {
+		return
+	}
+	return c.Blob(code, MIMEApplicationMsgpack, b)
 }
 
 func (c *context) JSONPretty(code int, i interface{}, indent string) (err error) {
