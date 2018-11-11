@@ -2,7 +2,6 @@ module github.com/labstack/echo
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/json-iterator/go v1.1.5
 	github.com/labstack/gommon v0.2.7
 	github.com/mattn/go-colorable v0.0.9 // indirect
