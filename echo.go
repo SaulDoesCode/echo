@@ -57,6 +57,8 @@ import (
 	"github.com/labstack/gommon/color"
 	"github.com/labstack/gommon/log"
 	"golang.org/x/crypto/acme/autocert"
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
 )
 
 type (
@@ -660,6 +662,7 @@ func (e *Echo) StartServer(s *http.Server) (err error) {
 		if !e.HidePort {
 			e.colorer.Printf("⇨ http server started on %s\n", e.colorer.Green(e.Listener.Addr()))
 		}
+		e.Server.Handler = h2c.NewHandler(e, &http2.Server{})
 		return s.Serve(e.Listener)
 	}
 	if e.TLSListener == nil {
