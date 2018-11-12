@@ -407,24 +407,24 @@ func (c *context) String(code int, s string) (err error) {
 	return c.Blob(code, MIMETextPlainCharsetUTF8, []byte(s))
 }
 
+func (c *context) Msgpack(code int, i interface{}) (err error) {
+	c.writeContentType(MIMEApplicationMsgpack)
+	c.response.WriteHeader(code)
+	return msgpack.NewEncoder(c.response).Encode(i)
+}
+
 func (c *context) JSON(code int, i interface{}) (err error) {
 	_, pretty := c.QueryParams()["pretty"]
 	if c.echo.Debug || pretty {
 		return c.JSONPretty(code, i, "  ")
 	}
-	b, err := json.Marshal(i)
-	if err != nil {
-		return
-	}
-	return c.JSONBlob(code, b)
+	return c.jsonBlob(code, i)
 }
 
-func (c *context) Msgpack(code int, i interface{}) (err error) {
-	b, err := msgpack.Marshal(i)
-	if err != nil {
-		return
-	}
-	return c.Blob(code, MIMEApplicationMsgpack, b)
+func (c *context) jsonBlob(code int, i interface{}) (err error) {
+	c.writeContentType(MIMEApplicationJSONCharsetUTF8)
+	c.response.WriteHeader(code)
+	return json.NewEncoder(c.response).Encode(i)
 }
 
 func (c *context) JSONPretty(code int, i interface{}, indent string) (err error) {
