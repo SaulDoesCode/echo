@@ -1,14 +1,14 @@
 <a href="https://echo.labstack.com"><img height="80" src="https://cdn.labstack.com/images/echo-logo.svg"></a>
 
-[![Sourcegraph](https://sourcegraph.com/github.com/labstack/echo/-/badge.svg?style=flat-square)](https://sourcegraph.com/github.com/labstack/echo?badge)
-[![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/labstack/echo)
-[![Go Report Card](https://goreportcard.com/badge/github.com/labstack/echo?style=flat-square)](https://goreportcard.com/report/github.com/labstack/echo)
-[![Build Status](http://img.shields.io/travis/labstack/echo.svg?style=flat-square)](https://travis-ci.org/labstack/echo)
-[![Codecov](https://img.shields.io/codecov/c/github/labstack/echo.svg?style=flat-square)](https://codecov.io/gh/labstack/echo) 
-[![Join the chat at https://gitter.im/labstack/echo](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg?style=flat-square)](https://gitter.im/labstack/echo)
+[![Sourcegraph](https://sourcegraph.com/github.com/SaulDoesCode/echo/-/badge.svg?style=flat-square)](https://sourcegraph.com/github.com/SaulDoesCode/echo?badge)
+[![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/SaulDoesCode/echo)
+[![Go Report Card](https://goreportcard.com/badge/github.com/SaulDoesCode/echo?style=flat-square)](https://goreportcard.com/report/github.com/SaulDoesCode/echo)
+[![Build Status](http://img.shields.io/travis/SaulDoesCode/echo.svg?style=flat-square)](https://travis-ci.org/SaulDoesCode/echo)
+[![Codecov](https://img.shields.io/codecov/c/github/SaulDoesCode/echo.svg?style=flat-square)](https://codecov.io/gh/SaulDoesCode/echo) 
+[![Join the chat at https://gitter.im/SaulDoesCode/echo](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg?style=flat-square)](https://gitter.im/SaulDoesCode/echo)
 [![Forum](https://img.shields.io/badge/community-forum-00afd1.svg?style=flat-square)](https://forum.labstack.com)
 [![Twitter](https://img.shields.io/badge/twitter-@labstack-55acee.svg?style=flat-square)](https://twitter.com/labstack)
-[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/labstack/echo/master/LICENSE)
+[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/SaulDoesCode/echo/master/LICENSE)
 
 ## Feature Overview
 
@@ -44,8 +44,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/SaulDoesCode/echo"
+	"github.com/SaulDoesCode/echo/middleware"
 )
 
 func main() {
@@ -72,7 +72,7 @@ func hello(c echo.Context) error {
 ## Help
 
 - [Forum](https://forum.labstack.com)
-- [Chat](https://gitter.im/labstack/echo)
+- [Chat](https://gitter.im/SaulDoesCode/echo)
 
 ## Contribute
 
@@ -92,8 +92,8 @@ func hello(c echo.Context) error {
 ## Credits
 - [Vishal Rana](https://github.com/vishr) - Author
 - [Nitin Rana](https://github.com/nr17) - Consultant
-- [Contributors](https://github.com/labstack/echo/graphs/contributors)
+- [Contributors](https://github.com/SaulDoesCode/echo/graphs/contributors)
 
 ## License
 
-[MIT](https://github.com/labstack/echo/blob/master/LICENSE)
+[MIT](https://github.com/SaulDoesCode/echo/blob/master/LICENSE)
