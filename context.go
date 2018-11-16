@@ -1,7 +1,6 @@
 package echo
 
 import (
-	"bytes"
 	"encoding/xml"
 	"fmt"
 	"io"
@@ -388,11 +387,7 @@ func (c *context) Render(code int, name string, data interface{}) (err error) {
 	if c.echo.Renderer == nil {
 		return ErrRendererNotRegistered
 	}
-	buf := new(bytes.Buffer)
-	if err = c.echo.Renderer.Render(buf, name, data, c); err != nil {
-		return
-	}
-	return c.HTMLBlob(code, buf.Bytes())
+	return c.echo.Renderer.Render(c, code, name, data)
 }
 
 func (c *context) HTML(code int, html string) (err error) {

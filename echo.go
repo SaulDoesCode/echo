@@ -42,7 +42,6 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"io"
 	stdLog "log"
 	"net"
 	"net/http"
@@ -118,7 +117,7 @@ type (
 
 	// Renderer is the interface that wraps the Render function.
 	Renderer interface {
-		Render(io.Writer, string, interface{}, Context) error
+		Render(Context, int, string, interface{}) error
 	}
 
 	// Map defines a generic map of type `map[string]interface{}`.

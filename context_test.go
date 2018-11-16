@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/xml"
 	"errors"
-	"io"
 	"mime/multipart"
 	"net/http"
 	"net/http/httptest"
@@ -23,8 +22,11 @@ type (
 	}
 )
 
-func (t *Template) Render(w io.Writer, name string, data interface{}, c Context) error {
-	return t.templates.ExecuteTemplate(w, name, data)
+func (t *Template) Render(c Context, code int, name string, data interface{}) error {
+	res := c.Response()
+	res.WriteHeader(code)
+	res.Header().Set("Content-Type", "text/html")
+	return t.templates.ExecuteTemplate(res, name, data)
 }
 
 func TestContext(t *testing.T) {
